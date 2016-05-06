@@ -24,32 +24,36 @@ var _defaultOptions2 = _interopRequireDefault(_defaultOptions);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function doRequest() {
-    var customOptions = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
+var _options = {};
+(0, _polyfill2.default)(_options, _defaultOptions2.default);
 
-    (0, _polyfill2.default)(_defaultOptions2.default, customOptions);
-
-    return (0, _isomorphicFetch2.default)(_defaultOptions2.default.url, _defaultOptions2.default);
-}
-
+/**
+ * Set config used for override the default global settings.
+ *
+ */
 function setConfig() {
     var customConfig = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
 
-    (0, _polyfill2.default)(_defaultOptions2.default, customConfig);
+    (0, _polyfill2.default)(_options, customConfig);
 }
 
+/**
+ * Exported functions
+ */
 function doGet() {
     var customOptions = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
 
-    (0, _polyfill2.default)(customOptions, { method: 'get' });
+    var mergedOptions = {};
+    merge(mergedOptions, customOptions, 'get');
 
-    return doRequest(customOptions);
+    return doRequest(mergedOptions);
 }
 
 function doPut() {
     var customOptions = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
 
-    (0, _polyfill2.default)(customOptions, { method: 'put' });
+    var mergedOptions = {};
+    merge(mergedOptions, customOptions, 'put');
 
     return doRequest(mergedOptions);
 }
@@ -57,7 +61,8 @@ function doPut() {
 function doPost() {
     var customOptions = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
 
-    (0, _polyfill2.default)(customOptions, { method: 'post' });
+    var mergedOptions = {};
+    merge(mergedOptions, customOptions, 'post');
 
     return doRequest(mergedOptions);
 }
@@ -65,7 +70,27 @@ function doPost() {
 function doDelete() {
     var customOptions = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
 
-    (0, _polyfill2.default)(customOptions, { method: 'delete' });
+    var mergedOptions = {};
+    merge(mergedOptions, customOptions, 'delete');
 
     return doRequest(mergedOptions);
+}
+
+/*
+ * Private functions
+ */
+function doRequest() {
+    var customOptions = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
+
+    (0, _polyfill2.default)(_options, customOptions);
+
+    return (0, _isomorphicFetch2.default)(_options.url, _options);
+}
+
+function merge(obj, source, method) {
+    if (source.method) {
+        console.warn('\'' + method + '\' is used for this type of request, your custom method type will be ignored.');
+    }
+
+    (0, _polyfill2.default)(obj, source, { method: method });
 }
