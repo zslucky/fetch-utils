@@ -7,11 +7,11 @@ const assert = chai.assert;
 
 describe('index', function() {
     it('should return true', function() {
-        doGet();
-        doPut();
-        doPost();
-        doDelete();
-        setConfig();
+        doGet("url");
+        doPut("url");
+        doPost("url");
+        doDelete("url");
+        setConfig("url");
 
         assert.equal(1, 1);
     });
