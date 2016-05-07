@@ -2,10 +2,12 @@
 'use strict';
 
 import fetch from 'isomorphic-fetch';
-import assign from 'object.assign/polyfill';
+import assignPolyfill from 'object.assign/polyfill';
 import options from './config/defaultOptions';
 
+const assign = assignPolyfill();
 const _options = {};
+
 assign(_options, options);
 
 /**
@@ -21,13 +23,15 @@ export function setConfig(customConfig = {}) {
  */
 export function doGet(customOptions) {
     const mergedOptions = {};
+
     merge(mergedOptions, customOptions, 'get');
-    
+
     return doRequest(mergedOptions);
 }
 
 export function doPut(customOptions) {
     const mergedOptions = {};
+
     merge(mergedOptions, customOptions, 'put');
 
     return doRequest(mergedOptions);
@@ -35,6 +39,7 @@ export function doPut(customOptions) {
 
 export function doPost(customOptions) {
     const mergedOptions = {};
+
     merge(mergedOptions, customOptions, 'post');
 
     return doRequest(mergedOptions);
@@ -42,6 +47,7 @@ export function doPost(customOptions) {
 
 export function doDelete(customOptions) {
     const mergedOptions = {};
+    
     merge(mergedOptions, customOptions, 'delete');
 
     return doRequest(mergedOptions);
