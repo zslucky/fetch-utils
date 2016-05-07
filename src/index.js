@@ -19,28 +19,28 @@ export function setConfig(customConfig = {}) {
 /**
  * Exported functions
  */
-export function doGet(customOptions = {}) {
+export function doGet(customOptions) {
     const mergedOptions = {};
     merge(mergedOptions, customOptions, 'get');
     
     return doRequest(mergedOptions);
 }
 
-export function doPut(customOptions = {}) {
+export function doPut(customOptions) {
     const mergedOptions = {};
     merge(mergedOptions, customOptions, 'put');
 
     return doRequest(mergedOptions);
 }
 
-export function doPost(customOptions = {}) {
+export function doPost(customOptions) {
     const mergedOptions = {};
     merge(mergedOptions, customOptions, 'post');
 
     return doRequest(mergedOptions);
 }
 
-export function doDelete(customOptions = {}) {
+export function doDelete(customOptions) {
     const mergedOptions = {};
     merge(mergedOptions, customOptions, 'delete');
 
@@ -57,9 +57,17 @@ function doRequest(customOptions = {}) {
 }
 
 function merge(obj, source, method) {
-    if (source.method) {
+    const _source = {};
+
+    if (typeof source === 'string') {
+        _source.url = source;
+    } else {
+        _source = source;
+    }
+
+    if (_source.method) {
         console.warn(`'${method}' is used for this type of request, your custom method type will be ignored.`);
     }
 
-    assign(obj, source, { method });
+    assign(obj, _source, { method });
 }

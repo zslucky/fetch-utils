@@ -1,12 +1,13 @@
 {
   "name": "fetch-utils",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Utils lib for fetch",
   "main": "dist/index.js",
   "scripts": {
     "lint": "eslint -c .eslintrc src test",
     "test": "mocha --compilers js:babel-core/register ./test/*/*.js",
-    "build": "npm run lint && babel src --out-dir dist"
+    "build": "npm run lint && babel src --out-dir dist",
+    "istanbul": "./node_modules/.bin/istanbul cover ./test/index.test.js"
   },
   "repository": {
     "type": "git",
@@ -33,6 +34,7 @@
     "babel-preset-es2015": "^6.3.13",
     "eslint": "^1.10.3",
     "eslint-plugin-babel": "^3.0.0",
+    "istanbul": "^0.4.3",
     "mocha": "^2.3.4"
   }
 }
