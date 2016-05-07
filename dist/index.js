@@ -24,8 +24,10 @@ var _defaultOptions2 = _interopRequireDefault(_defaultOptions);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+var assign = (0, _polyfill2.default)();
 var _options = {};
-(0, _polyfill2.default)(_options, _defaultOptions2.default);
+
+assign(_options, _defaultOptions2.default);
 
 /**
  * Set config used for override the default global settings.
@@ -34,7 +36,7 @@ var _options = {};
 function setConfig() {
     var customConfig = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
 
-    (0, _polyfill2.default)(_options, customConfig);
+    assign(_options, customConfig);
 }
 
 /**
@@ -42,6 +44,7 @@ function setConfig() {
  */
 function doGet(customOptions) {
     var mergedOptions = {};
+
     merge(mergedOptions, customOptions, 'get');
 
     return doRequest(mergedOptions);
@@ -49,6 +52,7 @@ function doGet(customOptions) {
 
 function doPut(customOptions) {
     var mergedOptions = {};
+
     merge(mergedOptions, customOptions, 'put');
 
     return doRequest(mergedOptions);
@@ -56,6 +60,7 @@ function doPut(customOptions) {
 
 function doPost(customOptions) {
     var mergedOptions = {};
+
     merge(mergedOptions, customOptions, 'post');
 
     return doRequest(mergedOptions);
@@ -63,6 +68,7 @@ function doPost(customOptions) {
 
 function doDelete(customOptions) {
     var mergedOptions = {};
+
     merge(mergedOptions, customOptions, 'delete');
 
     return doRequest(mergedOptions);
@@ -74,7 +80,7 @@ function doDelete(customOptions) {
 function doRequest() {
     var customOptions = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
 
-    (0, _polyfill2.default)(_options, customOptions);
+    assign(_options, customOptions);
 
     return (0, _isomorphicFetch2.default)(_options.url, _options);
 }
@@ -92,5 +98,5 @@ function merge(obj, source, method) {
         console.warn('\'' + method + '\' is used for this type of request, your custom method type will be ignored.');
     }
 
-    (0, _polyfill2.default)(obj, _source, { method: method });
+    assign(obj, _source, { method: method });
 }

@@ -11,11 +11,10 @@ describe('index.js', function() {
     let url;
 
     beforeEach(function() {
-        url = 'http://dropwizard-myblog.herokuapp.com/api/v1/test';    
+        url = 'http://dropwizard-myblog.herokuapp.com/api/v1/test';
     });
 
     describe('with custom configuration', function() {
-
         let customConfig;
 
         beforeEach(function() {
@@ -28,10 +27,8 @@ describe('index.js', function() {
         });
 
         it('should get json successfully', function() {
-            assert(1, 1);
+            assert(customConfig.headers.Accept, 'application/json');
         });
-
-
     });
 
 
