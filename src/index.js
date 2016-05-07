@@ -57,7 +57,7 @@ function doRequest(customOptions = {}) {
 }
 
 function merge(obj, source, method) {
-    const _source = {};
+    let _source = {};
 
     if (typeof source === 'string') {
         _source.url = source;
