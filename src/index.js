@@ -25,7 +25,6 @@ export function doGet(customOptions) {
     const mergedOptions = {};
 
     merge(mergedOptions, customOptions, 'get');
-
     return doRequest(mergedOptions);
 }
 
