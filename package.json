@@ -1,7 +1,7 @@
 {
   "name": "fetch-utils",
-  "version": "1.1.1",
-  "description": "Utils lib for fetch",
+  "version": "1.1.2",
+  "description": "Modern client request sending method - Fetch, both work for node and browser.",
   "main": "dist/index.js",
   "scripts": {
     "lint": "eslint -c .eslintrc src test",
@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/zslucky/redux-fetch-middleware.git"
+    "url": "https://github.com/zslucky/fetch-utils.git"
   },
   "keywords": [
     "fetch",
