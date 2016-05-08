@@ -46,7 +46,6 @@ function doGet(customOptions) {
     var mergedOptions = {};
 
     merge(mergedOptions, customOptions, 'get');
-
     return doRequest(mergedOptions);
 }
 
@@ -80,9 +79,10 @@ function doDelete(customOptions) {
 function doRequest() {
     var customOptions = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
 
-    assign(_options, customOptions);
+    var optionInstance = {};
+    assign(optionInstance, _options, customOptions);
 
-    return (0, _isomorphicFetch2.default)(_options.url, _options);
+    return (0, _isomorphicFetch2.default)(optionInstance.url, optionInstance);
 }
 
 function merge(obj, source, method) {
