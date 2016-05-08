@@ -1,6 +1,6 @@
 {
   "name": "fetch-utils",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Utils lib for fetch",
   "main": "dist/index.js",
   "scripts": {
