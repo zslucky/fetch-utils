@@ -56,9 +56,10 @@ export function doDelete(customOptions) {
  * Private functions
  */
 function doRequest(customOptions = {}) {
-    assign(_options, customOptions);
+    const optionInstance = {};
+    assign(optionInstance, _options, customOptions);
 
-    return fetch(_options.url, _options);
+    return fetch(optionInstance.url, optionInstance);
 }
 
 function merge(obj, source, method) {
