@@ -1,12 +1,12 @@
 {
   "name": "fetch-utils",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "description": "Utils lib for fetch",
   "main": "dist/index.js",
   "scripts": {
     "lint": "eslint -c .eslintrc src test",
     "test": "babel-node ./node_modules/istanbul/lib/cli cover ./node_modules/.bin/_mocha test/  --report lcovonly -- --recursive -R min --check-leaks --require babel-core/register && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage",
-    "build": "npm run lint && babel src --out-dir dist"
+    "build": "babel src --out-dir dist"
   },
   "repository": {
     "type": "git",
@@ -14,6 +14,9 @@
   },
   "keywords": [
     "fetch",
+    "ajax",
+    "node",
+    "browser",
     "utils"
   ],
   "author": "",

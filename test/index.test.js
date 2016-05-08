@@ -105,7 +105,6 @@ describe('index.js', function() {
                     done();
                 });
         });
-
     });
 
     describe('with custom configuration', function() {
@@ -236,7 +235,5 @@ describe('index.js', function() {
                     done();
                 });
         });
-
     });
-
 });
