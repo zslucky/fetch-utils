@@ -11,7 +11,7 @@ const _options = {};
 assign(_options, options);
 
 /**
- * Set config used for override the default global settings.
+ * Set global config used for override the default global settings.
  *
  */
 export function setConfig(customConfig = {}) {
@@ -21,6 +21,10 @@ export function setConfig(customConfig = {}) {
 /**
  * Exported functions
  */
+
+/**
+ *  Get request
+ */
 export function doGet(customOptions) {
     const mergedOptions = {};
 
@@ -28,6 +32,9 @@ export function doGet(customOptions) {
     return doRequest(mergedOptions);
 }
 
+/**
+ *  Put request
+ */
 export function doPut(customOptions) {
     const mergedOptions = {};
 
@@ -36,6 +43,9 @@ export function doPut(customOptions) {
     return doRequest(mergedOptions);
 }
 
+/**
+ *  Post request
+ */
 export function doPost(customOptions) {
     const mergedOptions = {};
 
@@ -44,6 +54,9 @@ export function doPost(customOptions) {
     return doRequest(mergedOptions);
 }
 
+/**
+ *  Delete request
+ */
 export function doDelete(customOptions) {
     const mergedOptions = {};
     
@@ -55,6 +68,10 @@ export function doDelete(customOptions) {
 /*
  * Private functions
  */
+
+/**
+ *  common used request sender
+ */
 function doRequest(customOptions = {}) {
     const optionInstance = {};
     assign(optionInstance, _options, customOptions);
@@ -62,6 +79,12 @@ function doRequest(customOptions = {}) {
     return fetch(optionInstance.url, optionInstance);
 }
 
+/**
+ *  object merged function.
+ *  @param obj: the raw object.
+ *  @param source: the resource, can be `string` or `object`
+ *  @param method: the request method.
+ */
 function merge(obj, source, method) {
     let _source = {};
 

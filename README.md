@@ -1,6 +1,7 @@
 # fetch-utils
 [![Build Status](https://travis-ci.org/zslucky/fetch-utils.svg?branch=master)](https://travis-ci.org/zslucky/fetch-utils)
 [![Coverage Status](https://coveralls.io/repos/github/zslucky/fetch-utils/badge.svg?branch=master)](https://coveralls.io/github/zslucky/fetch-utils?branch=master)
+[![Inline docs](http://inch-ci.org/github/zslucky/fetch-utils.svg?branch=master)](http://inch-ci.org/github/zslucky/fetch-utils)
 
 This is a configurabled lib for [isomorphic-fetch](https://github.com/matthew-andrews/isomorphic-fetch) that we can add a global default configuration for every requests, aslo provide some packed methods that we can do request more easily.
 
