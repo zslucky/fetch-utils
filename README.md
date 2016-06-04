@@ -1,4 +1,6 @@
 # fetch-utils
+
+[![Join the chat at https://gitter.im/zslucky/fetch-utils](https://badges.gitter.im/zslucky/fetch-utils.svg)](https://gitter.im/zslucky/fetch-utils?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [![Build Status](https://travis-ci.org/zslucky/fetch-utils.svg?branch=master)](https://travis-ci.org/zslucky/fetch-utils)
 [![Coverage Status](https://coveralls.io/repos/github/zslucky/fetch-utils/badge.svg?branch=master)](https://coveralls.io/github/zslucky/fetch-utils?branch=master)
 [![Inline docs](http://inch-ci.org/github/zslucky/fetch-utils.svg?branch=master)](http://inch-ci.org/github/zslucky/fetch-utils)
