@@ -76,7 +76,13 @@ function doRequest(customOptions = {}) {
     const optionInstance = {};
     assign(optionInstance, _options, customOptions);
 
-    return fetch(optionInstance.url, optionInstance);
+    return fetch(optionInstance.url, optionInstance).then((resp) => {
+        if (resp.status < 300 && resp.status >= 200) {
+            return resp;
+        }
+
+        throw new Error(resp.statusText);
+    });
 }
 
 /**

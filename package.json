@@ -1,6 +1,6 @@
 {
   "name": "fetch-utils",
-  "version": "1.1.4",
+  "version": "1.1.5",
   "description": "Modern client request sending method - Fetch, both work for node and browser.",
   "main": "dist/index.js",
   "scripts": {

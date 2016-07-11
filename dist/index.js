@@ -30,7 +30,7 @@ var _options = {};
 assign(_options, _defaultOptions2.default);
 
 /**
- * Set config used for override the default global settings.
+ * Set global config used for override the default global settings.
  *
  */
 function setConfig() {
@@ -42,6 +42,10 @@ function setConfig() {
 /**
  * Exported functions
  */
+
+/**
+ *  Get request
+ */
 function doGet(customOptions) {
     var mergedOptions = {};
 
@@ -49,6 +53,9 @@ function doGet(customOptions) {
     return doRequest(mergedOptions);
 }
 
+/**
+ *  Put request
+ */
 function doPut(customOptions) {
     var mergedOptions = {};
 
@@ -57,6 +64,9 @@ function doPut(customOptions) {
     return doRequest(mergedOptions);
 }
 
+/**
+ *  Post request
+ */
 function doPost(customOptions) {
     var mergedOptions = {};
 
@@ -65,6 +75,9 @@ function doPost(customOptions) {
     return doRequest(mergedOptions);
 }
 
+/**
+ *  Delete request
+ */
 function doDelete(customOptions) {
     var mergedOptions = {};
 
@@ -76,15 +89,31 @@ function doDelete(customOptions) {
 /*
  * Private functions
  */
+
+/**
+ *  common used request sender
+ */
 function doRequest() {
     var customOptions = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
 
     var optionInstance = {};
     assign(optionInstance, _options, customOptions);
 
-    return (0, _isomorphicFetch2.default)(optionInstance.url, optionInstance);
+    return (0, _isomorphicFetch2.default)(optionInstance.url, optionInstance).then(function (resp) {
+        if (resp.status < 300 && resp.status >= 200) {
+            return resp;
+        }
+
+        throw new Error(resp.statusText);
+    });
 }
 
+/**
+ *  object merged function.
+ *  @param obj: the raw object.
+ *  @param source: the resource, can be `string` or `object`
+ *  @param method: the request method.
+ */
 function merge(obj, source, method) {
     var _source = {};
 
