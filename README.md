@@ -7,6 +7,8 @@
 
 This is a configurabled lib for [isomorphic-fetch](https://github.com/matthew-andrews/isomorphic-fetch) that we can add a global default configuration for every requests, aslo provide some packed methods that we can do request more easily.
 
+We are followed [SamVer 2.0](http://semver.org/), this started from version 2.0.0, then we will try our best to avoide the dependency hell.
+
 ---
 ### Install
 ```sh
@@ -49,6 +51,8 @@ promise
     //... err object
   });
 ```
+
+`response` has alreay treated in code, it will throw a warning if status code `200<=status<300`.
 
 `param` can be `string` or `object`.
 
