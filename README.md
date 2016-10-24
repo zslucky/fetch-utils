@@ -14,6 +14,10 @@ We are followed [SamVer 2.0](http://semver.org/), this started from version 2.0.
 ```sh
 npm i fetch-utils --save
 ```
+Or use `yarn`
+```sh
+yarn add fetch-utils
+```
 
 ### Usage
 For configruation: (Every options please refer to [fetch](https://github.com/github/fetch))
@@ -33,7 +37,7 @@ For methods:
 import { doGet, doPut, doPost, doDelete } from 'fetch-utils';
 
 // Every method will reture a Promise instance
-const promise = doGet(param); 
+const promise = doGet(param);
 const promise = doPut(param);
 const promise = doPost(param);
 const promise = doDelete(param);
@@ -67,7 +71,7 @@ doGet('http://www.yourdomain.com/api/v1/user/1?base=true&show=false');
 // Delete a user which id is 1.
 doDelete('http://www.yourdomain.com/api/v1/user1');
 
-// the same 
+// the same
 doGet({
     url: 'http://www.yourdomain.com/api/v1/user/1?base=true&show=false'
 });
@@ -92,12 +96,12 @@ doPost({
     });
 });
 
-/* 
+/*
  * multipart/form-data
  * single file example, multi-file is the same.
  */
 var dataBean = new Blob(
-  [JSON.stringify({user: 'user1'})], 
+  [JSON.stringify({user: 'user1'})],
   {type : 'application/json'}
 );
 

@@ -4,13 +4,18 @@
   "description": "Modern client request sending method - Fetch, both work for node and browser.",
   "main": "dist/index.js",
   "scripts": {
-    "lint": "eslint -c .eslintrc src test",
+    "lint": "freelint",
     "test": "babel-node ./node_modules/istanbul/lib/cli cover ./node_modules/.bin/_mocha test/  --report lcovonly -- --recursive -R min --check-leaks --require babel-core/register && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage",
     "build": "babel src --out-dir dist"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/zslucky/fetch-utils.git"
+  },
+  "freelint-base": {
+    "ignore": [
+      "dist/**"
+    ]
   },
   "keywords": [
     "fetch",
@@ -19,25 +24,23 @@
     "browser",
     "utils"
   ],
-  "author": "",
+  "author": "Lucky Zhou",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/zslucky/fetch-utils"
   },
   "homepage": "https://github.com/zslucky/fetch-utils",
   "dependencies": {
+    "chai": "^3.5.0",
     "isomorphic-fetch": "^2.2.1",
     "object.assign": "^4.0.3"
   },
   "devDependencies": {
     "babel-cli": "^6.4.5",
     "babel-core": "^6.4.5",
-    "babel-eslint": "^4.1.6",
     "babel-preset-es2015": "^6.3.13",
-    "chai": "^3.5.0",
     "coveralls": "^2.11.9",
-    "eslint": "^1.10.3",
-    "eslint-plugin-babel": "^3.0.0",
+    "freelint": "^3.0.2",
     "istanbul": "^1.0.0-alpha.2",
     "mocha": "^2.3.4",
     "mocha-lcov-reporter": "^1.2.0"
