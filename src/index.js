@@ -22,7 +22,7 @@ const getResponseType = (type) => {
   };
 
   return types[validType] ? validType : defaultResponseType;
-}
+};
 
 /*
  * Private functions
