@@ -1,12 +1,28 @@
 /* eslint-disable no-unused-vars,no-console */
 import fetch from 'isomorphic-fetch';
 import assignPolyfill from 'object.assign/polyfill';
-import options from './config/defaultOptions';
+import options, { defaultResponseType } from './config/defaultOptions';
 
 const assign = assignPolyfill();
 const opts = {};
 
 assign(opts, options);
+
+/**
+ *  Get an check the responseType user sets.
+ */
+const getResponseType = (type) => {
+  const validType = String(type).toLowerCase();
+  const types = {
+    json: true,
+    text: true,
+    formData: true,
+    blob: true,
+    arrayBuffer: true,
+  };
+
+  return types[validType] ? validType : defaultResponseType;
+}
 
 /*
  * Private functions
@@ -21,7 +37,7 @@ const doRequest = (customOptions = {}) => {
 
   return fetch(optionInstance.url, optionInstance).then((resp) => {
     if (resp.status < 300 && resp.status >= 200) {
-      return resp;
+      return resp[getResponseType(optionInstance.responseType)]();
     }
 
     throw new Error(resp.statusText);
@@ -56,7 +72,6 @@ const merge = (obj, source, method) => {
 
 /**
  * Set global config used for override the default global settings.
- *
  */
 export const setConfig = (customConfig = {}) => assign(opts, customConfig);
 

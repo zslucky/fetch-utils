@@ -3,6 +3,8 @@
  *  Default global config
  *
  */
+export const defaultResponseType = 'json';
+
 const defaultConifg = {
   headers: {
     Accept: 'application/json',

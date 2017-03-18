@@ -22,10 +22,23 @@ yarn add fetch-utils
 ### Usage
 For configruation: (Every options please refer to [fetch](https://github.com/github/fetch))
 ```javascript
+/*
+ *  // the default setting, override it if necessary
+ *  headers: {
+ *      'Accept': 'application/json',
+ *      'Content-Type': 'application/json'
+ *  }
+ */
 import { setConfig } from 'fetch-utils';
 
 const config = {
-    // ......
+    /*
+     * Can set the response type, default is json.
+     * You can config it in any single request to override it.
+     * Response type can be follows:
+     *   json, text, formData, blob, arrayBuffer
+     */
+    responseType: 'json'
 };
 
 // This setting will reflect to every requests, it's a global setting.

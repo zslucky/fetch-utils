@@ -8,6 +8,8 @@ Object.defineProperty(exports, "__esModule", {
  *  Default global config
  *
  */
+var defaultResponseType = exports.defaultResponseType = 'json';
+
 var defaultConifg = {
   headers: {
     Accept: 'application/json',

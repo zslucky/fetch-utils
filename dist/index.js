@@ -25,6 +25,22 @@ var opts = {};
 
 assign(opts, _defaultOptions2.default);
 
+/**
+ *  Get an check the responseType user sets.
+ */
+var getResponseType = function getResponseType(type) {
+  var validType = String(type).toLowerCase();
+  var types = {
+    json: true,
+    text: true,
+    formData: true,
+    blob: true,
+    arrayBuffer: true
+  };
+
+  return types[validType] ? validType : _defaultOptions.defaultResponseType;
+};
+
 /*
  * Private functions
  */
@@ -40,7 +56,7 @@ var doRequest = function doRequest() {
 
   return (0, _isomorphicFetch2.default)(optionInstance.url, optionInstance).then(function (resp) {
     if (resp.status < 300 && resp.status >= 200) {
-      return resp;
+      return resp[getResponseType(optionInstance.responseType)]();
     }
 
     throw new Error(resp.statusText);
@@ -75,7 +91,6 @@ var merge = function merge(obj, source, method) {
 
 /**
  * Set global config used for override the default global settings.
- *
  */
 var setConfig = exports.setConfig = function setConfig() {
   var customConfig = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
