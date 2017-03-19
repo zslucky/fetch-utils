@@ -11,17 +11,16 @@ describe('index.js', function () {
   describe('with default configuration', function () {
     let url;
     let options;
+    let textResp;
 
     beforeEach(function () {
       url = 'http://dropwizard-myblog.herokuapp.com/api/v1/test';
       options = { url };
+      textResp = { url, responseType: 'text' };
     });
 
     it('should get successfully with string parameter', function (done) {
-      doGet(url)
-        .then(function (resp) {
-          return resp.text();
-        })
+      doGet(textResp)
         .then(function (data) {
           assert.equal(data, 'Get Successfully', 'get results');
           done();
@@ -29,10 +28,7 @@ describe('index.js', function () {
     });
 
     it('should get successfully with object parameter', function (done) {
-      doGet(options)
-        .then(function (resp) {
-          return resp.text();
-        })
+      doGet(textResp)
         .then(function (data) {
           assert.equal(data, 'Get Successfully', 'get results');
           done();
@@ -40,10 +36,7 @@ describe('index.js', function () {
     });
 
     it('should put successfully with string parameter', function (done) {
-      doPut(url)
-        .then(function (resp) {
-          return resp.text();
-        })
+      doPut(textResp)
         .then(function (data) {
           assert.equal(data, 'Put Successfully', 'put results');
           done();
@@ -51,10 +44,7 @@ describe('index.js', function () {
     });
 
     it('should put successfully with object parameter', function (done) {
-      doPut(options)
-        .then(function (resp) {
-          return resp.text();
-        })
+      doPut(textResp)
         .then(function (data) {
           assert.equal(data, 'Put Successfully', 'put results');
           done();
@@ -62,10 +52,7 @@ describe('index.js', function () {
     });
 
     it('should post successfully with string parameter', function (done) {
-      doPost(url)
-        .then(function (resp) {
-          return resp.text();
-        })
+      doPost(textResp)
         .then(function (data) {
           assert.equal(data, 'Post Successfully', 'post results');
           done();
@@ -73,10 +60,7 @@ describe('index.js', function () {
     });
 
     it('should post successfully with object parameter', function (done) {
-      doPost(options)
-        .then(function (resp) {
-          return resp.text();
-        })
+      doPost(textResp)
         .then(function (data) {
           assert.equal(data, 'Post Successfully', 'post results');
           done();
@@ -85,10 +69,7 @@ describe('index.js', function () {
 
 
     it('should delete successfully with string parameter', function (done) {
-      doDelete(url)
-        .then(function (resp) {
-          return resp.text();
-        })
+      doDelete(textResp)
         .then(function (data) {
           assert.equal(data, 'Delete Successfully', 'delete results');
           done();
@@ -96,10 +77,7 @@ describe('index.js', function () {
     });
 
     it('should delete successfully with object parameter', function (done) {
-      doDelete(options)
-        .then(function (resp) {
-          return resp.text();
-        })
+      doDelete(textResp)
         .then(function (data) {
           assert.equal(data, 'Delete Successfully', 'delete results');
           done();
@@ -117,6 +95,7 @@ describe('index.js', function () {
         headers: {
           Accept: 'application/json',
         },
+        responseType: 'json',
       };
       url = 'http://dropwizard-myblog.herokuapp.com/api/v1/test/json';
       options = { url };
@@ -126,11 +105,6 @@ describe('index.js', function () {
 
     it('should get successfully with string parameter', function (done) {
       doGet(url)
-        .then(function (resp) {
-          assert(resp.headers.get('Content-Type'), 'application/json');
-
-          return resp.json();
-        })
         .then(function (data) {
           assert.isObject(data, 'data typeof object');
           assert.equal(data.message, 'Get Successfully', 'get results');
@@ -140,11 +114,6 @@ describe('index.js', function () {
 
     it('should get successfully with object parameter', function (done) {
       doGet(options)
-        .then(function (resp) {
-          assert(resp.headers.get('Content-Type'), 'application/json');
-
-          return resp.json();
-        })
         .then(function (data) {
           assert.isObject(data, 'object');
           assert.equal(data.message, 'Get Successfully', 'get results');
@@ -154,11 +123,6 @@ describe('index.js', function () {
 
     it('should put successfully with string parameter', function (done) {
       doPut(url)
-        .then(function (resp) {
-          assert(resp.headers.get('Content-Type'), 'application/json');
-
-          return resp.json();
-        })
         .then(function (data) {
           assert.isObject(data, 'data typeof object');
           assert.equal(data.message, 'Put Successfully', 'get results');
@@ -168,11 +132,6 @@ describe('index.js', function () {
 
     it('should put successfully with object parameter', function (done) {
       doPut(options)
-        .then(function (resp) {
-          assert(resp.headers.get('Content-Type'), 'application/json');
-
-          return resp.json();
-        })
         .then(function (data) {
           assert.isObject(data, 'object');
           assert.equal(data.message, 'Put Successfully', 'get results');
@@ -182,11 +141,6 @@ describe('index.js', function () {
 
     it('should post successfully with string parameter', function (done) {
       doPost(url)
-        .then(function (resp) {
-          assert(resp.headers.get('Content-Type'), 'application/json');
-
-          return resp.json();
-        })
         .then(function (data) {
           assert.isObject(data, 'data typeof object');
           assert.equal(data.message, 'Post Successfully', 'get results');
@@ -196,11 +150,6 @@ describe('index.js', function () {
 
     it('should post successfully with object parameter', function (done) {
       doPost(options)
-        .then(function (resp) {
-          assert(resp.headers.get('Content-Type'), 'application/json');
-
-          return resp.json();
-        })
         .then(function (data) {
           assert.isObject(data, 'object');
           assert.equal(data.message, 'Post Successfully', 'get results');
@@ -210,11 +159,6 @@ describe('index.js', function () {
 
     it('should delete successfully with string parameter', function (done) {
       doDelete(url)
-        .then(function (resp) {
-          assert(resp.headers.get('Content-Type'), 'application/json');
-
-          return resp.json();
-        })
         .then(function (data) {
           assert.isObject(data, 'data typeof object');
           assert.equal(data.message, 'Delete Successfully', 'get results');
@@ -224,11 +168,6 @@ describe('index.js', function () {
 
     it('should delete successfully with object parameter', function (done) {
       doDelete(options)
-        .then(function (resp) {
-          assert(resp.headers.get('Content-Type'), 'application/json');
-
-          return resp.json();
-        })
         .then(function (data) {
           assert.isObject(data, 'object');
           assert.equal(data.message, 'Delete Successfully', 'get results');
