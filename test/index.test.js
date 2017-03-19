@@ -10,12 +10,12 @@ describe('index.js', function () {
 
   describe('with default configuration', function () {
     let url;
-    let options;
+    // let options;
     let textResp;
 
     beforeEach(function () {
       url = 'http://dropwizard-myblog.herokuapp.com/api/v1/test';
-      options = { url };
+      // options = { url };
       textResp = { url, responseType: 'text' };
     });
 
