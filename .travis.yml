@@ -2,8 +2,7 @@ language: node_js
 node_js:
   - "4.2.6"
 install:
-  - yarn install
+  - npm install
 script:
-  - yarn run lint
-  - yarn test
-  - yarn run build
+  - npm run lint
+  - npm test
