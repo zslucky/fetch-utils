@@ -1,12 +1,11 @@
 /* eslint-disable no-unused-vars,no-console */
 import fetch from 'isomorphic-fetch';
-import assignPolyfill from 'object.assign/polyfill';
+import merge from 'deepmerge';
 import options, { defaultResponseType } from './config/defaultOptions';
 
-const assign = assignPolyfill();
-const opts = {};
+let opts = {};
 
-assign(opts, options);
+merge(opts, options);
 
 /**
  *  Get an check the responseType user sets.
@@ -32,8 +31,7 @@ const getResponseType = (type) => {
  *  common used request sender
  */
 const doRequest = (customOptions = {}) => {
-  const optionInstance = {};
-  assign(optionInstance, opts, customOptions);
+  const optionInstance = merge(opts, customOptions);
 
   return fetch(optionInstance.url, optionInstance).then((resp) => {
     if (resp.status < 300 && resp.status >= 200) {
@@ -46,11 +44,10 @@ const doRequest = (customOptions = {}) => {
 
 /**
  *  object merged function.
- *  @param obj: the raw object.
  *  @param source: the resource, can be `string` or `object`
  *  @param method: the request method.
  */
-const merge = (obj, source, method) => {
+const customMerge = (source, method) => {
   let mergedOptions = {};
 
   if (typeof source === 'string') {
@@ -63,7 +60,7 @@ const merge = (obj, source, method) => {
     console.warn(`'${method}' is used for this type of request, your custom method type will be ignored.`);
   }
 
-  assign(obj, mergedOptions, { method });
+  return merge(mergedOptions, { method });
 };
 
 /**
@@ -73,15 +70,14 @@ const merge = (obj, source, method) => {
 /**
  * Set global config used for override the default global settings.
  */
-export const setConfig = (customConfig = {}) => assign(opts, customConfig);
+export const setConfig = (customConfig = {}) => { opts = merge(opts, customConfig); };
 
 /**
  *  Get request
  */
 export const doGet = (customOptions) => {
-  const mergedOptions = {};
+  const mergedOptions = customMerge(customOptions, 'get');
 
-  merge(mergedOptions, customOptions, 'get');
   return doRequest(mergedOptions);
 };
 
@@ -89,9 +85,7 @@ export const doGet = (customOptions) => {
  *  Put request
  */
 export const doPut = (customOptions) => {
-  const mergedOptions = {};
-
-  merge(mergedOptions, customOptions, 'put');
+  const mergedOptions = customMerge(customOptions, 'put');
 
   return doRequest(mergedOptions);
 };
@@ -100,9 +94,7 @@ export const doPut = (customOptions) => {
  *  Post request
  */
 export const doPost = (customOptions) => {
-  const mergedOptions = {};
-
-  merge(mergedOptions, customOptions, 'post');
+  const mergedOptions = customMerge(customOptions, 'post');
 
   return doRequest(mergedOptions);
 };
@@ -111,9 +103,7 @@ export const doPost = (customOptions) => {
  *  Delete request
  */
 export const doDelete = (customOptions) => {
-  const mergedOptions = {};
-
-  merge(mergedOptions, customOptions, 'delete');
+  const mergedOptions = customMerge(customOptions, 'delete');
 
   return doRequest(mergedOptions);
 };

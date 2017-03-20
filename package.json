@@ -1,6 +1,6 @@
 {
   "name": "fetch-utils",
-  "version": "4.0.0",
+  "version": "4.0.1",
   "description": "Modern client request sending method - Fetch, both work for node and browser.",
   "main": "dist/index.js",
   "scripts": {
@@ -32,8 +32,8 @@
   "homepage": "https://github.com/zslucky/fetch-utils",
   "dependencies": {
     "chai": "^3.5.0",
-    "isomorphic-fetch": "^2.2.1",
-    "object.assign": "^4.0.3"
+    "deepmerge": "^1.3.2",
+    "isomorphic-fetch": "^2.2.1"
   },
   "devDependencies": {
     "babel-cli": "^6.4.5",
