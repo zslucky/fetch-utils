@@ -51,10 +51,16 @@ var doRequest = function doRequest() {
   var customOptions = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
 
   var optionInstance = (0, _deepmerge2.default)(opts, customOptions);
+  var errorHandlers = optionInstance.errorHandlers;
 
   return (0, _isomorphicFetch2.default)(optionInstance.url, optionInstance).then(function (resp) {
     if (resp.status < 300 && resp.status >= 200) {
       return resp[getResponseType(optionInstance.responseType)]();
+    }
+
+    if (errorHandlers[resp.status]) {
+      var ErrorInstance = errorHandlers[resp.status];
+      throw new ErrorInstance(resp.statusText);
     }
 
     throw new Error(resp.statusText);

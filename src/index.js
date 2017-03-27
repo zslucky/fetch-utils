@@ -32,10 +32,16 @@ const getResponseType = (type) => {
  */
 const doRequest = (customOptions = {}) => {
   const optionInstance = merge(opts, customOptions);
+  const errorHandlers = optionInstance.errorHandlers;
 
   return fetch(optionInstance.url, optionInstance).then((resp) => {
     if (resp.status < 300 && resp.status >= 200) {
       return resp[getResponseType(optionInstance.responseType)]();
+    }
+
+    if (errorHandlers[resp.status]) {
+      const ErrorInstance = errorHandlers[resp.status];
+      throw new ErrorInstance(resp.statusText);
     }
 
     throw new Error(resp.statusText);
