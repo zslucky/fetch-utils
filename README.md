@@ -31,6 +31,8 @@ For configruation: (Every options please refer to [fetch](https://github.com/git
  */
 import { setConfig } from 'fetch-utils';
 
+class NotFoundError extends Error {}
+
 const config = {
     /*
      * Can set the response type, default is json.
@@ -38,7 +40,11 @@ const config = {
      * Response type can be follows:
      *   json, text, formData, blob, arrayBuffer
      */
-    responseType: 'json'
+    responseType: 'json',
+    errorHandlers: {
+      404: NotFoundError
+      // Other error.
+    }
 };
 
 // This setting will reflect to every requests, it's a global setting.
