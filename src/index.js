@@ -7,6 +7,10 @@ let opts = {};
 
 merge(opts, options);
 
+/*
+ * Private functions
+ */
+
 /**
  *  Get an check the responseType user sets.
  */
@@ -22,10 +26,6 @@ const getResponseType = (type) => {
 
   return types[validType] ? validType : defaultResponseType;
 };
-
-/*
- * Private functions
- */
 
 /**
  *  common used request sender
@@ -113,9 +113,3 @@ export const doDelete = (customOptions) => {
 
   return doRequest(mergedOptions);
 };
-
-// export setConfig;
-// export doGet;
-// export doPut;
-// export doPost;
-// export doDelete;

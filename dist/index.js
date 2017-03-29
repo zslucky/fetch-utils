@@ -24,6 +24,10 @@ var opts = {}; /* eslint-disable no-unused-vars,no-console */
 
 (0, _deepmerge2.default)(opts, _defaultOptions2.default);
 
+/*
+ * Private functions
+ */
+
 /**
  *  Get an check the responseType user sets.
  */
@@ -39,10 +43,6 @@ var getResponseType = function getResponseType(type) {
 
   return types[validType] ? validType : _defaultOptions.defaultResponseType;
 };
-
-/*
- * Private functions
- */
 
 /**
  *  common used request sender
@@ -135,9 +135,3 @@ var doDelete = exports.doDelete = function doDelete(customOptions) {
 
   return doRequest(mergedOptions);
 };
-
-// export setConfig;
-// export doGet;
-// export doPut;
-// export doPost;
-// export doDelete;

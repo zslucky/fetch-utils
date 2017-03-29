@@ -62,20 +62,20 @@ const promise = doPost(param);
 const promise = doDelete(param);
 
 e.g.
+/*
+ * data type is defined by attribute `responseType`
+ * err is instance of Error, can be all of child class which super class is Error
+ */
 promise
-  .then(function(response) {
-    // Or returen response.text();
-    return response.json();
-  })
   .then(function(data) {
     //... the body data
   })
-  .catch(function(err) {
-    //... err object
+  .catch(function(error) {
+    //... error object
   });
 ```
 
-`response` has alreay treated in code, it will throw a warning if status code `200<=status<300`.
+* `error` is an instance of Error, can be pass any child Error class which extends Error, if you are using `babel` to suppoert builtin extend, you should add `transform-builtin-extend` plugin for babel add config in `.babelrc` to add `Error` in global.
 
 `param` can be `string` or `object`.
 
