@@ -75,9 +75,9 @@ promise
   });
 ```
 
-* `error` is an instance of Error, can be pass any child Error class which extends Error, if you are using `babel` to suppoert builtin extend, you should add `transform-builtin-extend` plugin for babel add config in `.babelrc` to add `Error` in global.
+> `error` is an instance of Error, can be pass any child Error class which extends Error, if you are using `babel` to suppoert builtin extend, you should add `transform-builtin-extend` plugin for babel add config in `.babelrc` to add `Error` in global.
 
-`param` can be `string` or `object`.
+> `param` can be `string` or `object`.
 
 1. `string`: the request url.
 
